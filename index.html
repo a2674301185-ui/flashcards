@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>词语卡片学习</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-controls">
+            <div class="left-group">
+                <div id="live-clock" class="info-item"></div>
+                <div id="weather-display" class="info-item clickable" title="点击重试获取天气">加载天气...</div>
+            </div>
+            <div class="right-group">
+                <button id="import-csv">导入本地 CSV</button>
+                <input type="file" id="local-csv-input" accept=".csv" style="display:none">
+                <button id="theme-toggle">切换黑暗模式</button>
+            </div>
+        </div>
+        <div id="card" class="card">
+            <div id="pinyin" class="pinyin"></div>
+            <div id="word" class="word">加载中...</div>
+            <div id="meaning" class="meaning"></div>
+        </div>
+        <div class="controls">
+            <button id="prev">上一个</button>
+            <button id="pause">暂停</button>
+            <button id="next">下一个</button>
+            <div class="speed-control">
+                <label for="speed">切换时间 (秒): </label>
+                <input type="number" id="speed" value="10" min="1" max="60" step="1">
+            </div>
+        </div>
+        <div id="error-message" class="error-hidden">
+            <p>浏览器出于安全考虑阻止了自动读取本地文件。</p>
+            <button onclick="document.getElementById('csv-file').click()">点此手动选择 words.csv 文件</button>
+            <input type="file" id="csv-file" accept=".csv" style="display:none">
+        </div>
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div class="info">
+            <span id="counter">0 / 0</span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

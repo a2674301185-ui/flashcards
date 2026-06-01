@@ -1,0 +1,335 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 98%;
+    max-width: 1600px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.left-group, .right-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.info-item {
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+    height: 36px; /* 与按钮高度保持一致 */
+    box-sizing: border-box;
+}
+
+.info-item.clickable {
+    cursor: pointer;
+}
+
+.info-item.clickable:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .info-item {
+    background: rgba(45, 45, 45, 0.6);
+    color: #eee;
+    border: 1px solid #444;
+}
+
+#import-csv {
+    background-color: #28a745;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+#import-csv:hover {
+    background-color: #218838;
+}
+
+#theme-toggle {
+    background-color: #6c757d;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    background: white;
+    padding: 60px 80px;
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s;
+    margin-bottom: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.word {
+    font-size: 6.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0;
+}
+
+.pinyin {
+    font-size: 2rem;
+    color: #666;
+    height: 2.5rem;
+}
+
+.meaning {
+    font-size: 2.5rem;
+    color: #444;
+    margin-top: 30px;
+    line-height: 1.4;
+}
+
+/* Dark Mode Styles (OLED Pure Black) */
+body.dark-mode {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.dark-mode .card {
+    background-color: #000000;
+    border: 1px solid #333; /* 增加微弱边框以便在纯黑背景下区分卡片轮廓 */
+    box-shadow: none;
+}
+
+body.dark-mode .word {
+    color: #ffffff;
+}
+
+body.dark-mode .pinyin {
+    color: #aaaaaa;
+}
+
+body.dark-mode .meaning {
+    color: #dddddd;
+}
+
+body.dark-mode .progress-container {
+    background-color: #222;
+}
+
+body.dark-mode .info {
+    color: #666;
+}
+
+body.dark-mode .speed-control {
+    color: #999;
+}
+
+body.dark-mode .speed-control input {
+    background-color: #000;
+    color: #fff;
+    border-color: #444;
+}
+
+body.dark-mode #error-message {
+    background-color: #1a1500;
+    color: #ffc107;
+    border-color: #332b00;
+}
+
+.controls {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.speed-control {
+    margin-left: 20px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.speed-control input {
+    width: 60px;
+    padding: 5px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #28a745;
+    transition: width 0.1s linear;
+}
+
+.info {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* 响应式适配：针对小屏幕和手机横屏 */
+@media (max-width: 768px) {
+    .word {
+        font-size: 4rem;
+    }
+    .meaning {
+        font-size: 1.8rem;
+    }
+    .card {
+        padding: 30px;
+        min-height: 400px;
+    }
+}
+
+/* 针对手机横屏（高度极小，如 iPhone 12 mini Safari）的进阶优化 */
+@media (max-height: 420px) {
+    body {
+        padding: 5px 0;
+        align-items: flex-start;
+    }
+    .container {
+        width: 98%;
+    }
+    .top-controls {
+        margin-bottom: 5px;
+        gap: 5px;
+    }
+    #theme-toggle, #import-csv {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+    .card {
+        padding: 10px 30px;
+        min-height: auto;
+        height: 60vh; /* 进一步压缩卡片高度占比 */
+        margin-bottom: 8px;
+    }
+    .word {
+        font-size: 15vh; /* 使用 vh 单位，字体大小随屏幕高度实时缩放 */
+        margin: 2px 0;
+    }
+    .pinyin {
+        font-size: 5vh;
+        height: 6vh;
+    }
+    .meaning {
+        font-size: 8vh;
+        margin-top: 5px;
+        line-height: 1.2;
+    }
+    .controls {
+        margin-bottom: 5px;
+        gap: 8px;
+    }
+    button {
+        padding: 5px 12px;
+        font-size: 0.9rem;
+    }
+    .speed-control {
+        font-size: 0.9rem;
+    }
+    .speed-control input {
+        width: 45px;
+        padding: 3px;
+    }
+    .progress-container {
+        height: 4px;
+        margin-bottom: 5px;
+    }
+}
+
+#error-message {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ffeeba;
+}
+
+.error-hidden {
+    display: none;
+}
+
+#error-message button {
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#error-message button:hover {
+    background-color: #e0a800;
+}
